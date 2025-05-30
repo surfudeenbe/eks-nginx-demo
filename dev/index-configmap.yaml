@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  index.html: "Hi This is Surfudeen\r\n\r\nwelcome to my devops assignment!!"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: index-configmap
+  namespace: devproject
