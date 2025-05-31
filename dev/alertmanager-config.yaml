@@ -1,0 +1,20 @@
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'lonewarriorzen@gmail.com'
+  smtp_auth_username: 'lonewarriorzen@gmail.com'
+  smtp_auth_password: 'uzwo qcud syln jlwo'
+  smtp_require_tls: true
+
+route:
+  group_by: ['alertname']
+  group_wait: 10s
+  group_interval: 1m
+  repeat_interval: 10m
+  receiver: email-notifications
+
+receivers:
+  - name: email-notifications
+    email_configs:
+      - to: 'lonewarriorzen@gmail.com'
+        send_resolved: true
+
