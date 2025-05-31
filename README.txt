@@ -262,4 +262,7 @@ Username: admin
 Password: Retrieve with:
 kubectl get secret -n prometheus stable-grafana -o jsonpath="{.data.admin-password}" | base64 --decode
 
+to test with failing pod run :
+kubectl run failpod --image=busybox --restart=Always -- /bin/false
+
 
