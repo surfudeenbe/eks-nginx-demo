@@ -3,6 +3,8 @@ kind: PrometheusRule
 metadata:
   name: pod-crash-alert
   namespace: prometheus
+  labels:
+    release: stable
 spec:
   groups:
     - name: pod.rules
