@@ -36,7 +36,7 @@ resource "aws_eks_node_group" "global-node-group" {
   subnet_ids = [aws_subnet.pri01.id, aws_subnet.pri02.id]
   instance_types = ["t2.medium"]
   remote_access {
-    ec2_ssh_key = "lone-my"
+    ec2_ssh_key = "surfudeen"
   }
   scaling_config {
     desired_size = 2
