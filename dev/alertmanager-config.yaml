@@ -1,8 +1,8 @@
 global:
   smtp_smarthost: 'smtp.gmail.com:587'
-  smtp_from: 'lonewarriorzen@gmail.com'
-  smtp_auth_username: 'lonewarriorzen@gmail.com'
-  smtp_auth_password: 'uzwo qcud syln jlwo'
+  smtp_from: 'surfudeenbe@gmail.com'
+  smtp_auth_username: 'surfudeenbe@gmail.com'
+  smtp_auth_password: 'bkul biiu isot vzxc'
   smtp_require_tls: true
 
 route:
@@ -15,6 +15,6 @@ route:
 receivers:
   - name: email-notifications
     email_configs:
-      - to: 'lonewarriorzen@gmail.com'
+      - to: 'surfudeenbe@gmail.com'
         send_resolved: true
 
