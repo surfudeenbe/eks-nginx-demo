@@ -42,3 +42,15 @@ variable "env" {
 variable "clustername" {
   default = "devcluster"
 }
+
+variable "az1" {
+  type = string
+}
+
+variable "az2" {
+  type = string
+}
+
+variable "region" {
+  type = string
+}
