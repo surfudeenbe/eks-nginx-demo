@@ -29,7 +29,7 @@ resource "aws_vpc" "kubevpc" {
 }
 resource "aws_subnet" "pubsub01" {
   cidr_block = var.block2
-  availability_zone = "us-west-2a"
+  availability_zone = var.az1
   vpc_id     = aws_vpc.kubevpc.id
   map_public_ip_on_launch = true
   tags = {
@@ -38,7 +38,7 @@ resource "aws_subnet" "pubsub01" {
 }
 resource "aws_subnet" "pubsub02" {
   cidr_block = var.block3
-  availability_zone = "us-west-2b"
+  availability_zone = var.az2
   vpc_id     = aws_vpc.kubevpc.id
   map_public_ip_on_launch = true
   tags = {
@@ -66,7 +66,7 @@ resource "aws_route_table_association" "routeassoc2" {
 }
 resource "aws_subnet" "pri01" {
   cidr_block = var.block5
-  availability_zone = "us-west-2a"
+  availability_zone = var.az1
   vpc_id     = aws_vpc.kubevpc.id
   tags = {
     Name = var.pri01
@@ -74,7 +74,7 @@ resource "aws_subnet" "pri01" {
 }
 resource "aws_subnet" "pri02" {
   cidr_block = var.block6
-  availability_zone = "us-west-2b"
+  availability_zone = var.az2
   vpc_id     = aws_vpc.kubevpc.id
   tags = {
     Name = var.pri02
@@ -110,3 +110,4 @@ resource "aws_route_table_association" "prirta2" {
   route_table_id = aws_route_table.prirt.id
   subnet_id = aws_subnet.pri02.id
 }
+
