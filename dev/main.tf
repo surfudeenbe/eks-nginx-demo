@@ -14,4 +14,6 @@ module "clustering" {
   block6      = var.block6
   env         = var.env
   clustername = var.clustername
+  az1 = var.az1
+  az2= var.az2
 }
