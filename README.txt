@@ -29,8 +29,9 @@ This project provisions an Amazon EKS cluster using Terraform and deploys a samp
 ## ⚙️ Prerequisites
 
 - AWS CLI v2
-- Terraform v1.3+ (or compatible)
+- Terraform v1.3
 - `kubectl`
+-helm
 - Properly configured AWS credentials (IAM user/role with EKS and EC2 access)
 - IAM permissions for creating clusters, VPC, IAM roles, etc.
 
@@ -77,7 +78,7 @@ terraform apply
 Once the Terraform apply completes successfully, run the following command:
 
 ```bash
-aws eks update-kubeconfig --name devcluster --region us-west-2
+aws eks update-kubeconfig --name devcluster --region us-east-1
 ```
 
 > This command updates your local kubeconfig file so you can interact with the cluster using `kubectl`.
@@ -130,36 +131,6 @@ Look for the `EXTERNAL-IP` under the `ingress-nginx-controller` service.
 ```
 http://<external-loadbalancer-dns>
 ```
-
----
-
-## ✅ Useful `kubectl` Commands
-
-- View all namespaces:
-
-```bash
-kubectl get ns
-```
-
-- View all pods in all namespaces:
-
-```bash
-kubectl get pods -A
-```
-
-- Describe a pod (for debugging):
-
-```bash
-kubectl describe pod <pod-name> -n <namespace>
-```
-
-- Check ingress resources:
-
-```bash
-kubectl get ingress -A
-```
-
----
 
 ## 🧹 Clean Up
 
@@ -227,15 +198,13 @@ kubectl create secret generic alertmanager-stable-kube-prometheus-sta-alertmanag
   -n prometheus --dry-run=client -o yaml | kubectl apply -f -
   
 Step 7: Restart Alertmanager Pods to Load New Config
-
 kubectl delete pod -l app.kubernetes.io/name=alertmanager -n prometheus
-Verify pods restart:
 
+Verify pods restart:
 kubectl get pods -n prometheus
 
 Step 8: Verify Alertmanager UI
 Port-forward Alertmanager service:
-
 kubectl port-forward svc/stable-kube-prometheus-sta-alertmanager -n prometheus 9093
 Open in browser: http://localhost:9093
 
@@ -243,6 +212,7 @@ Check the status and ensure your email receiver is configured.
 
 Step 9: Create a Test Alert Rule (prometheusRule Object) to create new custom alert rule and this will reflected in grafana and alert-manager as well
 Created crashloop.yaml inside dev/ folder:
+
 kubectl apply -f crashloop.yaml
 
 Step 10: Confirm Alert Firing and Email Delivery
